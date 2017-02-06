@@ -28,7 +28,9 @@ class BackgroundsUpdater():
     all_backgrounds = {}
     backgrounds_delay = 0
     walls_delay = 30
+    enable_walls = False
     all_backgrounds_keys = {}
+    max_images = 50
 
     pvr_bg_recordingsonly = False
     custom_picturespath = ""
@@ -91,7 +93,7 @@ class BackgroundsUpdater():
                     self.update_backgrounds()
 
                 # Update wall images every interval (if enabled by skinner)
-                if self.walls_delay and walls_task_interval >= self.walls_delay:
+                if self.enable_walls and self.walls_delay and (walls_task_interval >= self.walls_delay):
                     walls_task_interval = 0
                     thread.start_new_thread(self.wallimages.update_wallbackgrounds, ())
                     self.wallimages.update_manualwalls()
@@ -118,12 +120,13 @@ class BackgroundsUpdater():
 
         self.walls_delay = int(self.addon.getSetting("wallimages_delay"))
         self.wallimages.max_wallimages = int(self.addon.getSetting("max_wallimages"))
+        self.max_images = int(self.addon.getSetting("max_images"))
         self.pvr_bg_recordingsonly = self.addon.getSetting("pvr_bg_recordingsonly") == "true"
+        self.enable_walls = xbmc.getCondVisibility("Skin.HasSetting(SkinHelper.EnableWallBackgrounds)")
         if self.addon.getSetting("enable_custom_images_path") == "true":
             self.custom_picturespath = self.addon.getSetting("custom_images_path")
         else:
             self.custom_picturespath = ""
-
         try:
             # skinner can enable manual wall images generation so check for these settings
             # store in memory so wo do not have to query the skin settings too often
@@ -168,7 +171,7 @@ class BackgroundsUpdater():
             lib_path = lib_path + "&filter=random"
 
         for media in self.kodidb.files(lib_path, sort={"method": "random", "order": "descending"},
-                                       limits=(0, 50)):
+                                       limits=(0, self.max_images)):
             image = {}
 
             if media['label'].lower() == "next page":
@@ -178,6 +181,8 @@ class BackgroundsUpdater():
                     image["fanart"] = get_clean_image(media['art']['fanart'])
                 elif media['art'].get('tvshow.fanart'):
                     image["fanart"] = get_clean_image(media['art']['tvshow.fanart'])
+                elif media['art'].get('artist.fanart'):
+                    image["fanart"] = get_clean_image(media['art']['artist.fanart'])
                 if media['art'].get('thumb'):
                     image["thumbnail"] = get_clean_image(media['art']['thumb'])
             if not image.get('fanart') and media.get("fanart"):
@@ -195,7 +200,7 @@ class BackgroundsUpdater():
                 image["poster"] = get_clean_image(media.get('art', {}).get('poster', ''))
                 image["clearlogo"] = get_clean_image(media.get('art', {}).get('clearlogo', ''))
                 result.append(image)
-        return result
+        return random.shuffle(result)
 
     def get_pictures(self):
         '''get images we can use as pictures background'''
@@ -338,17 +343,13 @@ class BackgroundsUpdater():
         if xbmc.getCondVisibility("Library.HasContent(music)"):
             # music artists
             self.set_background("SkinHelper.AllMusicBackground", "musicdb://artists/", label=32019)
-            # random songs
-            self.set_background(
-                "SkinHelper.AllMusicSongsBackground",
-                "plugin://script.skin.helper.widgets/?mediatype=songs&action=random&limit=50",
-                label=32022)
             # recent albums
             self.set_background(
-                "SkinHelper.RecentMusicBackground",
-                "plugin://script.skin.helper.widgets/?mediatype=albums&action=recent&limit=50",
-                label=32023)
-
+                "SkinHelper.RecentMusicBackground", "musicdb://recentlyaddedalbums/", label=32023)
+            # random songs
+            self.set_background(
+                "SkinHelper.AllMusicSongsBackground", "musicdb://songs/", label=32022)
+                
         # tmdb backgrounds (extendedinfo)
         if xbmc.getCondVisibility("System.HasAddon(script.extendedinfo)"):
             self.set_background(
