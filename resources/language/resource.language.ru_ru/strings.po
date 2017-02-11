@@ -207,7 +207,3 @@ msgstr "Изменить"
 msgctxt "#32078"
 msgid "Delete"
 msgstr "Удалить"
-
-msgctxt "#32079"
-msgid "Max. items to grab from each library to create random backgrounds"
-msgstr "Мак. элементов из каждой библиотеки, чтобы создать случайные фоны"
