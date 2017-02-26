@@ -19,7 +19,7 @@ from simplecache import SimpleCache
 from conditional_backgrounds import get_cond_background
 from smartshortcuts import SmartShortCuts
 from wallimages import WallImages
-from artutils import KodiDb, get_clean_image
+from metadatautils import KodiDb, get_clean_image
 
 
 class BackgroundsUpdater():
@@ -27,6 +27,7 @@ class BackgroundsUpdater():
     exit = False
     all_backgrounds = {}
     all_backgrounds2 = {}
+    all_backgrounds_labels = []
     backgrounds_delay = 0
     walls_delay = 30
     enable_walls = False
@@ -34,6 +35,7 @@ class BackgroundsUpdater():
     prefetch_images = 30  # number of images to cache in memory for each library path
     pvr_bg_recordingsonly = False
     custom_picturespath = ""
+    winprops = {}
 
     def __init__(self):
         self.cache = SimpleCache()
@@ -41,10 +43,8 @@ class BackgroundsUpdater():
         self.win = xbmcgui.Window(10000)
         self.addon = xbmcaddon.Addon(ADDON_ID)
         self.kodimonitor = xbmc.Monitor()
-        self.all_backgrounds_labels = []
         self.smartshortcuts = SmartShortCuts(self)
         self.wallimages = WallImages(self)
-        self.winprops = {}
 
     def stop(self):
         '''stop running our background service '''
@@ -141,7 +141,8 @@ class BackgroundsUpdater():
 
     def report_allbackgrounds(self):
         '''sets a list of all known backgrounds as winprop to be retrieved from skinshortcuts'''
-        self.set_winprop("SkinHelper.AllBackgrounds", repr(self.all_backgrounds_labels))
+        if self.all_backgrounds_labels:
+            self.set_winprop("SkinHelper.AllBackgrounds", repr(self.all_backgrounds_labels))
 
     def set_winprop(self, key, value):
         '''sets a window property and writes it to our global list'''
@@ -177,7 +178,7 @@ class BackgroundsUpdater():
         items = self.kodidb.get_json("Files.GetDirectory", returntype="", optparam=("directory", lib_path),
                                      fields=["title", "art", "thumbnail", "fanart"],
                                      sort={"method": "random", "order": "descending"},
-                                     limits=(0, self.prefetch_images))
+                                     limits=(0, self.prefetch_images*2))
 
         for media in items:
             image = {}
@@ -207,6 +208,8 @@ class BackgroundsUpdater():
                 image["poster"] = get_clean_image(media.get('art', {}).get('poster', ''))
                 image["clearlogo"] = get_clean_image(media.get('art', {}).get('clearlogo', ''))
                 result.append(image)
+            if len(result) == self.prefetch_images:
+                break
         random.shuffle(result)
         return result
 
