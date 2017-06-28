@@ -175,6 +175,7 @@ class BackgroundsUpdater():
             return result
 
         lib_path = get_content_path(lib_path)
+
         if "plugin.video.emby" in lib_path and "browsecontent" in lib_path and "filter" not in lib_path:
             lib_path = lib_path + "&filter=random"
 
