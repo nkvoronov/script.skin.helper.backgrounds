@@ -7,6 +7,7 @@
 '''
 
 import thread
+import threading
 import random
 import os
 from datetime import timedelta
@@ -19,12 +20,13 @@ from simplecache import SimpleCache
 from conditional_backgrounds import get_cond_background
 from smartshortcuts import SmartShortCuts
 from wallimages import WallImages
-from metadatautils import KodiDb, get_clean_image
+from metadatautils import MetadataUtils
 
 
-class BackgroundsUpdater():
+class BackgroundsUpdater(threading.Thread):
     '''Background service providing rotating backgrounds to Kodi skins'''
     exit = False
+    event = None
     all_backgrounds = {}
     all_backgrounds2 = {}
     all_backgrounds_labels = []
@@ -37,26 +39,28 @@ class BackgroundsUpdater():
     custom_picturespath = ""
     winprops = {}
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.cache = SimpleCache()
-        self.kodidb = KodiDb()
+        self.mutils = MetadataUtils()
         self.win = xbmcgui.Window(10000)
         self.addon = xbmcaddon.Addon(ADDON_ID)
-        self.kodimonitor = xbmc.Monitor()
         self.smartshortcuts = SmartShortCuts(self)
         self.wallimages = WallImages(self)
+        self.kodimonitor = kwargs.get("kodimonitor")
+        self.event = threading.Event()
+        threading.Thread.__init__(self, *args)
 
     def stop(self):
         '''stop running our background service '''
-        log_msg("BackgroundsUpdater - stop called", xbmc.LOGNOTICE)
         self.smartshortcuts.exit = True
         self.wallimages.exit = True
         self.exit = True
-        xbmc.sleep(100)  # allow threads to process the stop request
+        self.event.set()
+        self.event.clear()
+        self.join(0.5)
         del self.smartshortcuts
         del self.wallimages
         del self.win
-        del self.kodimonitor
         del self.addon
 
     def run(self):
@@ -68,7 +72,7 @@ class BackgroundsUpdater():
         walls_task_interval = 0
         delayed_task_interval = 112
 
-        while not self.kodimonitor.abortRequested():
+        while not self.exit:
 
             # Process backgrounds only if we're not watching fullscreen video
             if xbmc.getCondVisibility(
@@ -83,6 +87,9 @@ class BackgroundsUpdater():
                     self.report_allbackgrounds()
                     self.smartshortcuts.build_smartshortcuts()
                     self.winpropcache(True)
+                    
+                if self.exit:
+                    break
 
                 # force refresh smart shortcuts on request
                 if self.win.getProperty("refreshsmartshortcuts"):
@@ -93,6 +100,9 @@ class BackgroundsUpdater():
                 if self.backgrounds_delay and backgrounds_task_interval >= self.backgrounds_delay:
                     backgrounds_task_interval = 0
                     self.update_backgrounds()
+                    
+                if self.exit:
+                    break
 
                 # Update wall images every interval (if enabled by skinner)
                 if self.enable_walls and self.walls_delay and (walls_task_interval >= self.walls_delay):
@@ -104,9 +114,6 @@ class BackgroundsUpdater():
             backgrounds_task_interval += 1
             walls_task_interval += 1
             delayed_task_interval += 1
-
-        # abort requested
-        self.stop()
 
     def get_config(self):
         '''gets various settings for the script as set by the skinner or user'''
@@ -146,6 +153,8 @@ class BackgroundsUpdater():
 
     def set_winprop(self, key, value):
         '''sets a window property and writes it to our global list'''
+        if self.exit:
+            return
         self.winprops[key] = value
         if isinstance(value, unicode):
             value = value.encode("utf-8")
@@ -179,7 +188,7 @@ class BackgroundsUpdater():
         if "plugin.video.emby" in lib_path and "browsecontent" in lib_path and "filter" not in lib_path:
             lib_path = lib_path + "&filter=random"
 
-        items = self.kodidb.get_json("Files.GetDirectory", returntype="", optparam=("directory", lib_path),
+        items = self.mutils.kodidb.get_json("Files.GetDirectory", returntype="", optparam=("directory", lib_path),
                                      fields=["title", "art", "thumbnail", "fanart"],
                                      sort={"method": "random", "order": "descending"},
                                      limits=(0, self.prefetch_images*2))
@@ -189,17 +198,17 @@ class BackgroundsUpdater():
                 continue
             if media.get('art'):
                 if media['art'].get('fanart'):
-                    image["fanart"] = get_clean_image(media['art']['fanart'])
+                    image["fanart"] = self.mutils.get_clean_image(media['art']['fanart'])
                 elif media['art'].get('tvshow.fanart'):
-                    image["fanart"] = get_clean_image(media['art']['tvshow.fanart'])
+                    image["fanart"] = self.mutils.get_clean_image(media['art']['tvshow.fanart'])
                 elif media['art'].get('artist.fanart'):
-                    image["fanart"] = get_clean_image(media['art']['artist.fanart'])
+                    image["fanart"] = self.mutils.get_clean_image(media['art']['artist.fanart'])
                 if media['art'].get('thumb'):
-                    image["thumbnail"] = get_clean_image(media['art']['thumb'])
+                    image["thumbnail"] = self.mutils.get_clean_image(media['art']['thumb'])
             if not image.get('fanart') and media.get("fanart"):
-                image["fanart"] = get_clean_image(media['fanart'])
+                image["fanart"] = self.mutils.get_clean_image(media['fanart'])
             if not image.get("thumbnail") and media.get("thumbnail"):
-                image["thumbnail"] = get_clean_image(media["thumbnail"])
+                image["thumbnail"] = self.mutils.get_clean_image(media["thumbnail"])
 
             # only append items which have a fanart image
             if image.get("fanart"):
@@ -207,9 +216,9 @@ class BackgroundsUpdater():
                 image["title"] = media.get('title', '')
                 if not image.get("title"):
                     image["title"] = media.get('label', '')
-                image["landscape"] = get_clean_image(media.get('art', {}).get('landscape', ''))
-                image["poster"] = get_clean_image(media.get('art', {}).get('poster', ''))
-                image["clearlogo"] = get_clean_image(media.get('art', {}).get('clearlogo', ''))
+                image["landscape"] = self.mutils.get_clean_image(media.get('art', {}).get('landscape', ''))
+                image["poster"] = self.mutils.get_clean_image(media.get('art', {}).get('poster', ''))
+                image["clearlogo"] = self.mutils.get_clean_image(media.get('art', {}).get('clearlogo', ''))
                 result.append(image)
             if len(result) == self.prefetch_images:
                 break
@@ -231,7 +240,7 @@ class BackgroundsUpdater():
                     images.append({"fanart": image, "title": file.decode("utf-8")})
         else:
             # load pictures from all picture sources
-            media_array = self.kodidb.get_json('Files.GetSources', optparam=("media", "pictures"))
+            media_array = self.mutils.kodidb.get_json('Files.GetSources', optparam=("media", "pictures"))
             randomdirs = []
             for source in media_array:
                 if 'file' in source:
@@ -258,6 +267,8 @@ class BackgroundsUpdater():
 
     def set_background(self, win_prop, lib_path, fallback_image="", label=None):
         '''set the window property for the background image'''
+        if self.exit:
+            return
         image = None
         if isinstance(lib_path, list):
             # global background
