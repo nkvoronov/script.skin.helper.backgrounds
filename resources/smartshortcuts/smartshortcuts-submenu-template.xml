@@ -9,7 +9,7 @@
 		<action>$INFO[Window(Home).Property(WINDOWPROP.path)]</action>
 		<visible>!IsEmpty(Window(Home).Property(WINDOWPROP.path))</visible>
 	</shortcut>
-    <shortcut>
+	<shortcut>
 		<defaultID>$INFO[Window(Home).Property(WINDOWPROP.mylist.title)]</defaultID>
 		<label>$INFO[Window(Home).Property(WINDOWPROP.mylist.title)]</label>
 		<label2>Video Add-ons</label2>
@@ -18,7 +18,7 @@
 		<action>$INFO[Window(Home).Property(WINDOWPROP.mylist.path)]</action>
 		<visible>!IsEmpty(Window(Home).Property(WINDOWPROP.mylist.path))</visible>
 	</shortcut>
-    <shortcut>
+	<shortcut>
 		<defaultID>$INFO[Window(Home).Property(WINDOWPROP.suggestions.title)]</defaultID>
 		<label>$INFO[Window(Home).Property(WINDOWPROP.suggestions.title)]</label>
 		<label2>Video Add-ons</label2>
@@ -81,31 +81,31 @@
 		<action>$INFO[Window(Home).Property(WINDOWPROP.unwatched.path)]</action>
 		<visible>!IsEmpty(Window(Home).Property(WINDOWPROP.unwatched.path))</visible>
 	</shortcut>
-    <shortcut>
+	<shortcut>
 		<defaultID>$INFO[Window(Home).Property(WINDOWPROP.ondeck.title)]</defaultID>
 		<label>$INFO[Window(Home).Property(WINDOWPROP.ondeck.title)]</label>
 		<label2>Video Add-ons</label2>
-        <icon>ICONIMAGE</icon>
+		<icon>ICONIMAGE</icon>
 		<thumb>$INFO[Window(Home).Property(WINDOWPROP.ondeck.image)]</thumb>
 		<action>$INFO[Window(Home).Property(WINDOWPROP.ondeck.path)]</action>
-        <visible>!IsEmpty(Window(Home).Property(WINDOWPROP.ondeck.path))</visible>
+		<visible>!IsEmpty(Window(Home).Property(WINDOWPROP.ondeck.path))</visible>
 	</shortcut>
-    <shortcut>
+	<shortcut>
 		<defaultID>$INFO[Window(Home).Property(WINDOWPROP.recommended.title)]</defaultID>
 		<label>$INFO[Window(Home).Property(WINDOWPROP.recommended.title)]</label>
 		<label2>Video Add-ons</label2>
-        <icon>ICONIMAGE</icon>
+		<icon>ICONIMAGE</icon>
 		<thumb>$INFO[Window(Home).Property(WINDOWPROP.recommended.image)]</thumb>
 		<action>$INFO[Window(Home).Property(WINDOWPROP.recommended.path)]</action>
-        <visible>!IsEmpty(Window(Home).Property(WINDOWPROP.recommended.path))</visible>
+		<visible>!IsEmpty(Window(Home).Property(WINDOWPROP.recommended.path))</visible>
 	</shortcut>
-    <shortcut>
+	<shortcut>
 		<defaultID>$INFO[Window(Home).Property(WINDOWPROP.genres.title)]</defaultID>
 		<label>$INFO[Window(Home).Property(WINDOWPROP.genres.title)]</label>
 		<label2>Video Add-ons</label2>
-        <icon>ICONIMAGE</icon>
+		<icon>ICONIMAGE</icon>
 		<thumb>$INFO[Window(Home).Property(WINDOWPROP.genres.image)]</thumb>
 		<action>$INFO[Window(Home).Property(WINDOWPROP.genres.path)]</action>
-        <visible>!IsEmpty(Window(Home).Property(WINDOWPROP.genres.path))</visible>
+		<visible>!IsEmpty(Window(Home).Property(WINDOWPROP.genres.path))</visible>
 	</shortcut>
 </shortcuts>
