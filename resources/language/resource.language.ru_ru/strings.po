@@ -26,19 +26,19 @@ msgstr "Стена фонов"
 
 msgctxt "#32002"
 msgid "Interval in seconds for rotating backgrounds (0 to disable)"
-msgstr "Интервал в секундах для вращающихся фонов (0 для отключения)"
+msgstr "Интервал в сек. для поворота фонов (0 для откл.)"
 
 msgctxt "#32003"
 msgid "Interval in seconds for rotating wall images (0 to disable)"
-msgstr "Интервал в секундах для поворота изображения стены (0 для отключения)"
+msgstr "Интервал в сек. для поворота фона стены (0 для откл.)"
 
 msgctxt "#32004"
 msgid "Only use images from recordings for random PVR background"
-msgstr "Использовать только изображения из записей для случайного фона PVR"
+msgstr "Использовать фоны из записей для случайного фона PVR"
 
 msgctxt "#32005"
 msgid "Use custom path for random pictures background"
-msgstr "Использовать полз. путь для случайных фоновых изображений"
+msgstr "Использовать полз. путь для случайных фонов"
 
 msgctxt "#32006"
 msgid "Custom path:"
@@ -46,11 +46,11 @@ msgstr "Полз. путь:"
 
 msgctxt "#32007"
 msgid "Maximum number of wall images to create for each background"
-msgstr "Максимальное количество стен изображений созданных для каждого фона"
+msgstr "Макс. количество стен фонов созданных для каждого фона"
 
 msgctxt "#32008"
 msgid "Clear cache (rebuild all wall images)"
-msgstr "Очистить кэш (перестроить все стены изображений)"
+msgstr "Очистить кэш (перестроить все стены фонов)"
 
 msgctxt "#32009"
 msgid "Global media fanart background"
@@ -154,7 +154,7 @@ msgstr "Пожалуйста, введите имя для условного ф
 
 msgctxt "#32061"
 msgid "Please select a background image"
-msgstr "Пожалуйста, выберите фоновое изображение"
+msgstr "Пожалуйста, выберите фон"
 
 msgctxt "#32064"
 msgid "Do you want to setup a single background or a folder with multiple backgrounds ?"
@@ -170,7 +170,7 @@ msgstr "Несколько"
 
 msgctxt "#32067"
 msgid "Select image folder path"
-msgstr "Выбрать путь к папке изображения"
+msgstr "Выбрать путь к папке фона"
 
 msgctxt "#32070"
 msgid "Conditional backgrounds"
