@@ -41,7 +41,7 @@ msgid "Use custom path for random pictures background"
 msgstr ""
 
 msgctxt "#32006"
-msgid "Custom path:"
+msgid "- Custom path:"
 msgstr ""
 
 msgctxt "#32007"

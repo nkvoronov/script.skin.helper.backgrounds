@@ -41,8 +41,8 @@ msgid "Use custom path for random pictures background"
 msgstr "Использовать полз. путь для случайных фонов"
 
 msgctxt "#32006"
-msgid "Custom path:"
-msgstr "Полз. путь:"
+msgid "- Custom path:"
+msgstr "- Полз. путь:"
 
 msgctxt "#32007"
 msgid "Maximum number of wall images to create for each background"
