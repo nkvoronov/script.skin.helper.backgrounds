@@ -1,7 +1,7 @@
 # Kodi language file
 # Addon Name: Skin Helper Backgrounds
 # Addon id: script.skin.helper.backgrounds
-# Addon Provider: marcelveldt
+# Addon Provider: marcelveldt, YLLOW_DRAGON
 msgid ""
 msgstr ""
 "Project-Id-Version: XBMC-Addons\n"
@@ -9,8 +9,8 @@ msgstr ""
 "POT-Creation-Date: 2014-10-26 17:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Guilouz\n"
-"Language: en\n"
+"Language-Team: LANGUAGE\n"
+"Language: ua_UK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,192 +18,192 @@ msgstr ""
 
 msgctxt "#32000"
 msgid "Backgrounds"
-msgstr "Arrière-plans"
+msgstr "Фони"
 
 msgctxt "#32001"
 msgid "Wall Backgrounds"
-msgstr "Arrière-plans du mur"
+msgstr "Стіна фонів"
 
 msgctxt "#32002"
 msgid "Interval in seconds for rotating backgrounds (0 to disable)"
-msgstr "Intervalle en secondes pour la rotation des arrière-plans (0 pour désactiver)"
+msgstr "Інтервал в сек. для повороту фонів (0 для викл.)"
 
 msgctxt "#32003"
 msgid "Interval in seconds for rotating wall images (0 to disable)"
-msgstr "Intervalle en secondes pour la rotation des images du mur (0 pour désactiver)"
+msgstr "Інтервал в сек. для повороту фону стіни (0 для викл.)"
 
 msgctxt "#32004"
 msgid "Only use images from recordings for random PVR background"
-msgstr "Utiliser uniquement les images des enregistrements pour l'arrière-plan PVR aléatoire"
+msgstr "Використовувати фони із записів для випадкового фону PVR"
 
 msgctxt "#32005"
 msgid "Use custom path for random pictures background"
-msgstr "Utiliser un chemin personnalisé pour les images d'arrière-plans aléatoires"
+msgstr "Використовувати шлях корист. для випадкових фонів"
 
 msgctxt "#32006"
-msgid "Custom path:"
-msgstr "Chemin personnalisé :"
+msgid "- Custom path:"
+msgstr "- Шлях корист.:"
 
 msgctxt "#32007"
 msgid "Maximum number of wall images to create for each background"
-msgstr "Nombre maximal d'images du mur à créer pour chaque arrière-plan"
+msgstr "Макс. кількість стін фонів створених для кожного фону"
 
 msgctxt "#32008"
 msgid "Clear cache (rebuild all wall images)"
-msgstr "Supprimer le cache (reconstruit toutes les images du mur)"
+msgstr "Очистити кеш (перебудувати всі стіни фонів)"
 
 msgctxt "#32009"
 msgid "Global media fanart background"
-msgstr "Arrière-plan global du média"
+msgstr "Глобальний медіа фанарт фон"
 
 msgctxt "#32010"
 msgid "Random movies background"
-msgstr "Arrière-plans de films aléatoires"
+msgstr "Фон випадкові фільми"
 
 msgctxt "#32011"
 msgid "Recent movies background"
-msgstr "Arrière-plans de fims récents"
+msgstr "Фон останні фільми"
 
 msgctxt "#32012"
 msgid "In progress movies background"
-msgstr "Arrière-plans de fims en cours"
+msgstr "Фон переглядаємі фільми"
 
 msgctxt "#32013"
 msgid "Unwatched movies background"
-msgstr "Arrière-plans de fims non vus"
+msgstr "Фон непереглянуті фільми"
 
 msgctxt "#32014"
 msgid "Random Tv Shows background"
-msgstr "Arrière-plans de séries TV aléatoires"
+msgstr "Фон випадкові серіали"
 
 msgctxt "#32015"
 msgid "Recent episodes background"
-msgstr "Arrière-plans d'épisodes récents"
+msgstr "Фон останні епізоди"
 
 msgctxt "#32016"
 msgid "In progress Tv Shows background"
-msgstr "Arrière-plans d'épisodes en cours"
+msgstr "Фон переглядаємі серіали"
 
 msgctxt "#32017"
 msgid "Random pictures background"
-msgstr "Arrière-plans d'images aléatoires"
+msgstr "Фон випадкові картинки"
 
 msgctxt "#32018"
 msgid "Random music videos background"
-msgstr "Arrière-plans de clips vidéos aléatoires"
+msgstr "Фон випадкове муз. відео"
 
 msgctxt "#32019"
 msgid "Random music artists background"
-msgstr "Arrière-plans d'artistes de musique aléatoires"
+msgstr "Фон випадковий муз. артист"
 
 msgctxt "#32020"
 msgid "Top rated Movies (extendedinfo)"
-msgstr "Films les mieux notés (extendedinfo)"
+msgstr "Фільми з високим рейтингом (extendedinfo)"
 
 msgctxt "#32021"
 msgid "Top Rated tvshows (extendedinfo)"
-msgstr "Séries TV les mieux notées (extendedinfo)"
+msgstr "Серіали з високим рейтингом (extendedinfo)"
 
 msgctxt "#32022"
 msgid "Random songs background"
-msgstr "Arrière-plans de chansons aléatoires"
+msgstr "Фон випадкові пісні"
 
 msgctxt "#32023"
 msgid "Recent albums background"
-msgstr "Arrière-plans d'albums récents"
+msgstr "Фон останні альбоми"
 
 msgctxt "#32024"
 msgid "Random PVR background"
-msgstr "Arrière-plans de PVR aléatoires"
+msgstr "Фон випадкові PVR"
 
 msgctxt "#32025"
 msgid "Global videos background"
-msgstr "Arrière-plan global de la vidéo"
+msgstr "Фон глобальне відео"
 
 msgctxt "#32026"
 msgid "Global Movies & TvShows background"
-msgstr "Arrière-plans globals des films et séries TV"
+msgstr "Фон глобальні фільми та серіали"
 
 msgctxt "#32027"
 msgid "Recent videos background"
-msgstr "Arrière-plans des vidéos récentes"
+msgstr "Фон останнє відео"
 
 msgctxt "#32028"
 msgid "In-progress videos background"
-msgstr "Arrière-plans des vidéos en cours"
+msgstr "Фон переглядаєме відео"
 
 msgctxt "#32029"
 msgid "Wall"
-msgstr "Mur"
+msgstr "Стіна"
 
 msgctxt "#32030"
 msgid "Poster Wall"
-msgstr "Mur de posters"
+msgstr "Стіна постерів"
 
 msgctxt "#32031"
 msgid "Black & White"
-msgstr "Noir & Blanc"
+msgstr "Чорно-білий"
 
 msgctxt "#32032"
 msgid "Error while writing changes. Make sure you have filled in all fields correctly."
-msgstr "Erreur lors de l'écriture des changements. Assurez-vous d'avoir rempli correctement tous les champs."
+msgstr "Помилка при запису змін. Переконайтеся, що ви заповнили всі поля правильно."
 
 msgctxt "#32058"
 msgid "Please enter a name for your conditional background"
-msgstr "Veuillez entrer un nom pour votre arrière-plan conditionnel"
+msgstr "Будь ласка, введіть ім'я для умовного фону"
 
 msgctxt "#32061"
 msgid "Please select a background image"
-msgstr "Veuillez sélectionner une image d'arrière-plan"
+msgstr "Будь ласка, виберіть фон"
 
 msgctxt "#32064"
 msgid "Do you want to setup a single background or a folder with multiple backgrounds ?"
-msgstr "Vous voulez configurer un arrière-plan unique ou un dossier d’arrière-plans multiples ?"
+msgstr "Ви хочете налаштувати один фон або папку з декількома фонами?"
 
 msgctxt "#32065"
 msgid "Single"
-msgstr "Unique"
+msgstr "Один"
 
 msgctxt "#32066"
 msgid "Multiple"
-msgstr "Multiples"
+msgstr "Кілька"
 
 msgctxt "#32067"
 msgid "Select image folder path"
-msgstr "Sélection du chemin du dossier d’image"
+msgstr "Вибрати шлях до папки фону"
 
 msgctxt "#32070"
 msgid "Conditional backgrounds"
-msgstr "Arrière-plans conditionnels"
+msgstr "Умовні фони"
 
 msgctxt "#32071"
 msgid "Configure conditional backgrounds"
-msgstr "Configurer les arrière-plans conditionnels"
+msgstr "Налаштування умовних фонів"
 
 msgctxt "#32072"
 msgid "Setup backgrounds that will be activated on specified dates"
-msgstr "Configurer les arrière-plans qui seront activés à des dates spécifiées"
+msgstr "Налаштування фонів, які будуть активовані на зазначені дати"
 
 msgctxt "#32073"
 msgid "Add new condition..."
-msgstr "Ajouter une nouvelle condition..."
+msgstr "Додати нову умову..."
 
 msgctxt "#32074"
 msgid "Add a new condition to activate a custom background on a selected timespan"
-msgstr "Ajouter une nouvelle condition pour activer un arrière-plan personnalisé sur un intervalle de temps sélectionné"
+msgstr "Додати нову умову для активації користувача фону на обраний відрізок часу"
 
 msgctxt "#32075"
 msgid "Delete or change ?"
-msgstr "Supprimer ou remplacer ?"
+msgstr "Видалити або змінити ?"
 
 msgctxt "#32076"
 msgid "Do you want to delete or change the existing entry ?"
-msgstr "Voulez-vous supprimer ou remplacer l'entrée existante ?"
+msgstr "Ви хочете видалити або змінити існуючий запис?"
 
 msgctxt "#32077"
 msgid "Change"
-msgstr "Remplacer"
+msgstr "Змінити"
 
 msgctxt "#32078"
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Видалити"
