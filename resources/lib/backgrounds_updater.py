@@ -5,21 +5,20 @@
     script.skin.helper.backgrounds
     a helper service for Kodi skins providing rotating backgrounds
 '''
-
-import thread
+import os, sys
 import threading
+import _thread as thread
 import random
-import os
 from datetime import timedelta
-from utils import log_msg, log_exception, get_content_path, urlencode, ADDON_ID
+from resources.lib.utils import log_msg, log_exception, get_content_path, urlencode, ADDON_ID
 import xbmc
 import xbmcvfs
 import xbmcaddon
 import xbmcgui
 from simplecache import SimpleCache
-from conditional_backgrounds import get_cond_background
-from smartshortcuts import SmartShortCuts
-from wallimages import WallImages
+from resources.lib.conditional_backgrounds import get_cond_background
+from resources.lib.smartshortcuts import SmartShortCuts
+from resources.lib.wallimages import WallImages
 from metadatautils import MetadataUtils
 
 
@@ -234,8 +233,8 @@ class BackgroundsUpdater(threading.Thread):
             # pick max 20 images from path
             for file in files[:20]:
                 if file.lower().endswith(".jpg") or file.lower().endswith(".png"):
-                    image = os.path.join(self.custom_picturespath, file.decode("utf-8"))
-                    images.append({"fanart": image, "title": file.decode("utf-8")})
+                    image = os.path.join(self.custom_picturespath, file)
+                    images.append({"fanart": image, "title": file})
         else:
             # load pictures from all picture sources
             media_array = self.mutils.kodidb.get_json('Files.GetSources', optparam=("media", "pictures"))
@@ -248,7 +247,7 @@ class BackgroundsUpdater(threading.Thread):
                         if dirs:
                             # pick 10 subdirectories
                             for randomdir in dirs[:10]:
-                                randomdir = os.path.join(source["file"], randomdir.decode("utf-8"))
+                                randomdir = os.path.join(source["file"], randomdir)
                                 randomdirs.append(randomdir)
                         # append root to dirs so we can also list images in the root
                         randomdirs.append(source["file"])

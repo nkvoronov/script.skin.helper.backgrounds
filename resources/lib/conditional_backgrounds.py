@@ -8,7 +8,7 @@
     delete and edit conditional overrides.
 '''
 
-from utils import log_msg, ADDON_ID, log_exception
+from resources.lib.utils import log_msg, ADDON_ID, log_exception
 import xbmc
 import xbmcgui
 import xbmcvfs
@@ -144,7 +144,7 @@ class ConditionalBackgrounds(xbmcgui.WindowXMLDialog):
                 if not deleteorchange:
                     # delete entry
                     dialog = xbmcgui.Dialog()
-                    if dialog.yesno(xbmc.getLocalizedString(122) + u" " + item.getLabel().decode("utf-8") + u" ?",
+                    if dialog.yesno(xbmc.getLocalizedString(122) + item.getLabel() + " ?",
                                     xbmc.getLocalizedString(125)):
                         del self.all_backgrounds[int(item.getProperty("id"))]
                         self.refresh_listing()

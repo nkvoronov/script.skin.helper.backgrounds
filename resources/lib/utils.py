@@ -3,11 +3,12 @@
 
 '''Various helper methods'''
 
-import xbmcgui
-import xbmc
-import sys
-import urllib
+
+import os, sys
+import urllib.parse as urlparse
 from traceback import format_exc
+import xbmc
+import xbmcgui
 
 ADDON_ID = "script.skin.helper.backgrounds"
 
