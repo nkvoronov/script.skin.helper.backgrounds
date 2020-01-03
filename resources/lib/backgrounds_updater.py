@@ -136,7 +136,7 @@ class BackgroundsUpdater(threading.Thread):
             # skinner can enable manual wall images generation so check for these settings
             # store in memory so wo do not have to query the skin settings too often
             if self.walls_delay:
-                for key in self.all_backgrounds_keys.iterkeys():
+                for key in iter(self.all_backgrounds_keys.keys()):
                     limitrange = xbmc.getInfoLabel("Skin.String(%s.EnableWallImages)" % key)
                     if limitrange:
                         self.wallimages.manual_walls[key] = int(limitrange)
