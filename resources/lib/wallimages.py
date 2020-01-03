@@ -229,7 +229,7 @@ class WallImages():
             if self.bgupdater.win.getProperty("%s.Wall.0" % win_prop):
                 # 1st run was already done so only refresh one random image in the collection...
                 image = random.choice(images)
-                for key, value in image.iteritems():
+                for key, value in image.items():
                     random_int = random.randint(0, limit)
                     if key == "fanart":
                         self.bgupdater.win.setProperty("%s.Wall.%s" % (win_prop, random_int), value)
@@ -239,7 +239,7 @@ class WallImages():
                 # first run: set all images
                 for i in range(limit):
                     image = random.choice(images)
-                    for key, value in image.iteritems():
+                    for key, value in image.items():
                         if key == "fanart":
                             self.bgupdater.win.setProperty("%s.Wall.%s" % (win_prop, i), value)
                         else:
@@ -247,7 +247,7 @@ class WallImages():
 
     def update_manualwalls(self):
         '''manual wall images, provides a collection of images which are randomly changing'''
-        for key, value in self.manual_walls.iteritems():
+        for key, value in self.manual_walls.items():
             self.set_manualwall(key, value)
 
     def get_images_from_vfspath(self, lib_path, arttype):

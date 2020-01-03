@@ -153,8 +153,6 @@ class BackgroundsUpdater(threading.Thread):
         if self.exit:
             return
         self.winprops[key] = value
-        if isinstance(value, unicode):
-            value = value.encode("utf-8")
         self.win.setProperty(key, value)
 
     def winpropcache(self, setcache=False):
@@ -165,12 +163,8 @@ class BackgroundsUpdater(threading.Thread):
         else:
             cache = self.cache.get(cachestr)
             if cache:
-                for key, value in cache.iteritems():
+                for key, value in cache.items():
                     if value:
-                        if isinstance(value, unicode):
-                            value = value.encode("utf-8")
-                        if isinstance(key, unicode):
-                            key = key.encode("utf-8")
                         self.win.setProperty(key, value)
 
     def get_images_from_vfspath(self, lib_path):
@@ -257,7 +251,6 @@ class BackgroundsUpdater(threading.Thread):
                             random.shuffle(files2)
                             for count, filename in enumerate(files2):
                                 if (filename.endswith(".jpg") or filename.endswith(".png")) and count < 6:
-                                    filename = filename.decode("utf-8")
                                     image = os.path.join(item, filename)
                                     images.append({"fanart": image, "title": filename})
         return images
@@ -331,7 +324,7 @@ class BackgroundsUpdater(threading.Thread):
     def set_image(self, win_prop, image, fallback_image):
         ''' actually set the image window property'''
         if image:
-            for key, value in image.iteritems():  # image is actually a dict
+            for key, value in image.items():  # image is actually a dict
                 if key == "fanart":
                     self.set_winprop(win_prop, value)
                 else:  # set additional image properties
