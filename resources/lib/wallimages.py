@@ -132,7 +132,7 @@ class WallImages():
                         })
 
         # skip if we do not have enough source images
-        if images < (self.max_wallimages * 2):
+        if len(images) < (self.max_wallimages * 2):
             log_msg("Building WALL background skipped - not enough source images")
             return wall_images
 
