@@ -5,7 +5,7 @@
 
 
 import os, sys
-import urllib.parse as urlparse
+import urllib.parse as urllib
 from traceback import format_exc
 import xbmc
 import xbmcgui

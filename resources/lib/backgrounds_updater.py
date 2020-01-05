@@ -87,7 +87,7 @@ class BackgroundsUpdater(threading.Thread):
                     self.smartshortcuts.build_smartshortcuts()
                     self.report_allbackgrounds()
                     self.winpropcache(True)
-                    
+
                 if self.exit:
                     break
 
@@ -100,7 +100,7 @@ class BackgroundsUpdater(threading.Thread):
                 if self.backgrounds_delay and backgrounds_task_interval >= self.backgrounds_delay:
                     backgrounds_task_interval = 0
                     self.update_backgrounds()
-                    
+
                 if self.exit:
                     break
 
@@ -320,7 +320,7 @@ class BackgroundsUpdater(threading.Thread):
         self.set_image(win_prop, image, fallback_image)
         return image
 
-    
+
     def set_image(self, win_prop, image, fallback_image):
         ''' actually set the image window property'''
         if image:
