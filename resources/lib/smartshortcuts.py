@@ -30,7 +30,7 @@ class SmartShortCuts():
     def get_smartshortcuts_nodes(self):
         '''return all smartshortcuts paths for which an image should be generated'''
         nodes = []
-        for value in self.all_nodes.itervalues():
+        for value in self.all_nodes.values():
             nodes += value
         return nodes
 
