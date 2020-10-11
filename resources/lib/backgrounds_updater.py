@@ -64,7 +64,7 @@ class BackgroundsUpdater(threading.Thread):
 
     def run(self):
         '''called to start our background service '''
-        log_msg("BackgroundsUpdater - started", xbmc.LOGNOTICE)
+        log_msg("BackgroundsUpdater - started", xbmc.LOGINFO)
         self.winpropcache()
         self.get_config()
         backgrounds_task_interval = 0
