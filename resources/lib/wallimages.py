@@ -202,7 +202,7 @@ class WallImages():
 
                 # save the files..
                 out_file = "%s%s.%s.jpg" % (WALLS_PATH, win_prop, count)
-                out_file = xbmc.translatePath(out_file)
+                out_file = xbmcvfs.translatePath(out_file)
                 if xbmcvfs.exists(out_file):
                     xbmcvfs.delete(out_file)
                     xbmc.sleep(500)
@@ -210,7 +210,7 @@ class WallImages():
                 img_canvas.save(out_file, "JPEG")
 
                 out_file_bw = "%s%s_BW.%s.jpg" % (WALLS_PATH, win_prop, count)
-                out_file_bw = xbmc.translatePath(out_file_bw)
+                out_file_bw = xbmcvfs.translatePath(out_file_bw)
                 if xbmcvfs.exists(out_file_bw):
                     xbmcvfs.delete(out_file_bw)
                     xbmc.sleep(500)
